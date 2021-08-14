@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5273E81426BDE3D500BB15A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5273E81326BDE3D500BB15A4 /* main.cpp */; };
+		5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */; };
+		52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BCD26C80980004008D3 /* UUIDHasher.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,15 @@
 /* Begin PBXFileReference section */
 		5273E81026BDE3D500BB15A4 /* ECS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ECS; sourceTree = BUILT_PRODUCTS_DIR; };
 		5273E81326BDE3D500BB15A4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5273E82226BDED5A00BB15A4 /* TypeIDGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TypeIDGenerator.hpp; sourceTree = "<group>"; };
+		5273E82826BDF15300BB15A4 /* IEntity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEntity.hpp; sourceTree = "<group>"; };
+		5273E82D26BDF48000BB15A4 /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		5273E83126BDF67D00BB15A4 /* Defs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Defs.hpp; sourceTree = "<group>"; };
+		5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityTestSuite.cpp; sourceTree = "<group>"; };
+		5273E83726BF179D00BB15A4 /* EntityTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityTestSuite.hpp; sourceTree = "<group>"; };
+		52997BC926C7C896004008D3 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
+		52997BCD26C80980004008D3 /* UUIDHasher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UUIDHasher.cpp; sourceTree = "<group>"; };
+		52997BCE26C80980004008D3 /* UUIDHasher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UUIDHasher.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +68,34 @@
 		5273E81226BDE3D500BB15A4 /* ECS */ = {
 			isa = PBXGroup;
 			children = (
+				5273E83526BF177200BB15A4 /* Tests */,
+				5273E81F26BDECF300BB15A4 /* Utils */,
 				5273E81326BDE3D500BB15A4 /* main.cpp */,
+				5273E82826BDF15300BB15A4 /* IEntity.hpp */,
+				5273E82D26BDF48000BB15A4 /* Entity.hpp */,
+				5273E83126BDF67D00BB15A4 /* Defs.hpp */,
+				52997BC926C7C896004008D3 /* EntityManager.hpp */,
 			);
 			path = ECS;
+			sourceTree = "<group>";
+		};
+		5273E81F26BDECF300BB15A4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5273E82226BDED5A00BB15A4 /* TypeIDGenerator.hpp */,
+				52997BCD26C80980004008D3 /* UUIDHasher.cpp */,
+				52997BCE26C80980004008D3 /* UUIDHasher.hpp */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5273E83526BF177200BB15A4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */,
+				5273E83726BF179D00BB15A4 /* EntityTestSuite.hpp */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */,
+				5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */,
 				5273E81426BDE3D500BB15A4 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +278,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/Users/maxim.tytskiy/Documents/Projects/3rd-parties/Boost_1.73.0/include/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -248,6 +287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/Users/maxim.tytskiy/Documents/Projects/3rd-parties/Boost_1.73.0/include/";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
