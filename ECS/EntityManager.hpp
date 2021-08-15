@@ -2,11 +2,14 @@
 #define EntityManager_hpp
 
 #include "IEntity.hpp"
+#include "IEntityManagerObserver.hpp"
+
 #include "Utils/TypeIDGenerator.hpp"
 #include "Utils/UUIDHasher.hpp"
 
 #include <memory>
 #include <unordered_map>
+#include <vector>
 
 namespace ECS
 {
@@ -39,18 +42,34 @@ public:
         return entityIt->second.get();
     }
     
-    void removeEntity(const EntityID& id)
-    {
-        _entitiesContainer.erase(id);
-    }
-    
     void reset()
     {
         _entitiesContainer.clear();
     }
     
+    void removeEntity(const EntityID& id)
+    {
+        _entitiesContainer.erase(id);
+        notifyIsRemoved(id);
+    }
+    
+    void notifyIsRemoved(const EntityID& id)
+    {
+        for (auto observer : _observers)
+        {
+            observer->onEntityRemove(id);
+        }
+    }
+    
+    void registerObserver(IEntityManagerObserver* observer)
+    {
+        _observers.push_back(observer);
+    }
+    
 private:
     EntitiesContainer _entitiesContainer;
+    
+    std::vector<IEntityManagerObserver*> _observers;
 };
 
 } // namespace ECS

@@ -12,9 +12,15 @@ class Entity : public IEntity
 {
 public:
     Entity()
-        : _typeID(Utils::TypeIDGenerator<IEntity>::getID<Type>())
+        : _id(Utils::EntityIDGenerator::getEntityID())
+        , _typeID(Utils::TypeIDGenerator::getID<Type>())
     {
     }
+    
+    EntityID getEntityID() const override
+    {
+        return _id;
+    };
     
     TypeID getTypeID() const override
     {
@@ -22,6 +28,7 @@ public:
     }
     
 private:
+    EntityID _id;
     TypeID _typeID;
 };
 

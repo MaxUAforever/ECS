@@ -5,8 +5,10 @@
 
 namespace ECS
 {
-using TypeID = boost::uuids::uuid;
+
+using ComponentID = boost::uuids::uuid;
 using EntityID = boost::uuids::uuid;
+using TypeID = boost::uuids::uuid;
 
 } // namespace ECS
 

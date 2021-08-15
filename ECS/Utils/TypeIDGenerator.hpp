@@ -10,7 +10,6 @@ namespace ECS
 namespace Utils
 {
 
-template <typename T>
 class TypeIDGenerator
 {
 public:
@@ -20,8 +19,21 @@ public:
         static TypeID typeID = boost::uuids::random_generator()();
         return typeID;
     }
-    
+};
+
+class EntityIDGenerator
+{
+public:
     inline static EntityID getEntityID()
+    {
+        return boost::uuids::random_generator()();
+    }
+};
+
+class ComponentIDGenerator
+{
+public:
+    inline static EntityID getComponentID()
     {
         return boost::uuids::random_generator()();
     }

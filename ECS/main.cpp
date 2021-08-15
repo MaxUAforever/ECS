@@ -1,14 +1,12 @@
-//
-//  main.cpp
-//  ECS
-//
-//  Created by Maxim Tytskiy on 07.08.2021.
-//
-
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+#include "IComponent.hpp"
+#include "EntityManager.hpp"
+#include "Tests/EntityTestSuite.hpp"
+
+int main(int argc, const char * argv[])
+{
+    ECS::Tests::EntityTests::runTests();
+    
     return 0;
 }

@@ -10,6 +10,7 @@
 		5273E81426BDE3D500BB15A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5273E81326BDE3D500BB15A4 /* main.cpp */; };
 		5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */; };
 		52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BCD26C80980004008D3 /* UUIDHasher.cpp */; };
+		52997BE226C82CBF004008D3 /* ComponentManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BE026C82CBF004008D3 /* ComponentManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,11 @@
 		52997BC926C7C896004008D3 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
 		52997BCD26C80980004008D3 /* UUIDHasher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UUIDHasher.cpp; sourceTree = "<group>"; };
 		52997BCE26C80980004008D3 /* UUIDHasher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UUIDHasher.hpp; sourceTree = "<group>"; };
+		52997BD626C81BEC004008D3 /* IComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IComponent.hpp; sourceTree = "<group>"; };
+		52997BDB26C81E51004008D3 /* Component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Component.hpp; sourceTree = "<group>"; };
+		52997BE026C82CBF004008D3 /* ComponentManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentManager.cpp; sourceTree = "<group>"; };
+		52997BE126C82CBF004008D3 /* ComponentManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ComponentManager.hpp; sourceTree = "<group>"; };
+		52997BEB26C854AD004008D3 /* IEntityManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEntityManagerObserver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +77,15 @@
 				5273E83526BF177200BB15A4 /* Tests */,
 				5273E81F26BDECF300BB15A4 /* Utils */,
 				5273E81326BDE3D500BB15A4 /* main.cpp */,
-				5273E82826BDF15300BB15A4 /* IEntity.hpp */,
-				5273E82D26BDF48000BB15A4 /* Entity.hpp */,
 				5273E83126BDF67D00BB15A4 /* Defs.hpp */,
+				5273E82826BDF15300BB15A4 /* IEntity.hpp */,
+				52997BE126C82CBF004008D3 /* ComponentManager.hpp */,
+				52997BE026C82CBF004008D3 /* ComponentManager.cpp */,
+				5273E82D26BDF48000BB15A4 /* Entity.hpp */,
+				52997BEB26C854AD004008D3 /* IEntityManagerObserver.hpp */,
 				52997BC926C7C896004008D3 /* EntityManager.hpp */,
+				52997BD626C81BEC004008D3 /* IComponent.hpp */,
+				52997BDB26C81E51004008D3 /* Component.hpp */,
 			);
 			path = ECS;
 			sourceTree = "<group>";
@@ -157,6 +168,7 @@
 				52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */,
 				5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */,
 				5273E81426BDE3D500BB15A4 /* main.cpp in Sources */,
+				52997BE226C82CBF004008D3 /* ComponentManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
