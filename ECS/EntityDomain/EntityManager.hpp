@@ -3,9 +3,10 @@
 
 #include "IEntity.hpp"
 #include "IEntityManagerObserver.hpp"
+#include "Entity.hpp"
 
-#include "Utils/TypeIDGenerator.hpp"
-#include "Utils/UUIDHasher.hpp"
+#include "ECS/Utils/TypeIDGenerator.hpp"
+#include "ECS/Utils/UUIDHasher.hpp"
 
 #include <memory>
 #include <unordered_map>
@@ -30,41 +31,20 @@ public:
         return entityID;
     }
     
-    IEntity* getEntity(const EntityID& id) const
+    template <typename ConcreteEntity>
+    ConcreteEntity* getEntity(const EntityID& id) const
     {
-        auto entityIt = _entitiesContainer.find(id);
-        
-        if (entityIt == _entitiesContainer.end())
-        {
-            return nullptr;
-        }
-        
-        return entityIt->second.get();
+        return static_cast<ConcreteEntity*>(getEntity(id));
     }
     
-    void reset()
-    {
-        _entitiesContainer.clear();
-    }
+    IEntity* getEntity(const EntityID& id) const;
     
-    void removeEntity(const EntityID& id)
-    {
-        _entitiesContainer.erase(id);
-        notifyIsRemoved(id);
-    }
+    void reset();
     
-    void notifyIsRemoved(const EntityID& id)
-    {
-        for (auto observer : _observers)
-        {
-            observer->onEntityRemove(id);
-        }
-    }
-    
-    void registerObserver(IEntityManagerObserver* observer)
-    {
-        _observers.push_back(observer);
-    }
+    void removeEntity(const EntityID& id);
+    void notifyIsRemoved(const EntityID& id);
+
+    void registerObserver(IEntityManagerObserver* observer);
     
 private:
     EntitiesContainer _entitiesContainer;

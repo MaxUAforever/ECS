@@ -2,13 +2,15 @@
 #define ComponentManager_hpp
 
 #include "Defs.hpp"
+
 #include "IComponent.hpp"
-#include "IEntityManagerObserver.hpp"
+#include "Component.hpp"
 
-#include "EntityManager.hpp"
+#include "ECS/EntityDomain/IEntityManagerObserver.hpp"
+#include "ECS/EntityDomain/EntityManager.hpp"
 
-#include "Utils/UUIDHasher.hpp"
-#include "Utils/TypeIDGenerator.hpp"
+#include "ECS/Utils/UUIDHasher.hpp"
+#include "ECS/Utils/TypeIDGenerator.hpp"
 
 #include <cassert>
 #include <unordered_map>
@@ -17,7 +19,8 @@
 namespace ECS
 {
 using Components = std::unordered_map<ComponentID, std::unique_ptr<IComponent>, Utils::UUIDHasher>;
-using EntityToComponentsMap = std::unordered_map<EntityID, std::unordered_set<ComponentID, Utils::UUIDHasher>, Utils::UUIDHasher>;
+
+using EntityToComponentsMap = std::unordered_map<EntityID, std::unordered_map<TypeID, ComponentID, Utils::UUIDHasher>, Utils::UUIDHasher>;
 
 class ComponentManager : public IEntityManagerObserver
 {
@@ -62,8 +65,9 @@ public:
         const auto componentID = component->getID();
         assert(_components.find(componentID) == _components.end());
         
+        _entitiesMap[entityID].insert({component->getTypeID(), componentID});
         _components[componentID] = std::move(component);
-        _entitiesMap[entityID].insert(componentID);
+        
         
         return componentID;
     }
@@ -86,6 +90,32 @@ public:
     }
     
     IComponent* getComponent(const ComponentID& id) const;
+    
+    template <typename ComponentType>
+    ComponentType* getComponent(const EntityID& entityID) const
+    {
+        if (_entityManager.getEntity(entityID) == nullptr)
+        {
+            return nullptr;
+        }
+        
+        const auto& componentsMapIt = _entitiesMap.find(entityID);
+        if (componentsMapIt == _entitiesMap.end())
+        {
+            return nullptr;
+        }
+        
+        const auto& componentsMap = componentsMapIt->second;
+        
+        const auto typeID = Utils::TypeIDGenerator::getID<ComponentType>();
+        const auto& componentIt = componentsMap.find(typeID);
+        if (componentIt == componentsMap.end())
+        {
+            return nullptr;
+        }
+        
+        return static_cast<ComponentType*>(_components.at(componentIt->second).get());
+    }
     
     void remove(const EntityID& entityID, const ComponentID& componentID);
     void clearEntity(const EntityID& entityID);

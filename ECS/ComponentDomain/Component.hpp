@@ -3,7 +3,7 @@
 
 #include "IComponent.hpp"
 
-#include "Utils/TypeIDGenerator.hpp"
+#include "ECS/Utils/TypeIDGenerator.hpp"
 
 namespace ECS
 {

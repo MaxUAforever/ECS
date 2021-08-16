@@ -1,7 +1,7 @@
 #ifndef IEntity_hpp
 #define IEntity_hpp
 
-#include "Utils/TypeIDGenerator.hpp"
+#include "ECS/Defs.hpp"
 
 namespace ECS
 {

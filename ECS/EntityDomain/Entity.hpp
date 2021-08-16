@@ -2,7 +2,7 @@
 #define Entity_hpp
 
 #include "IEntity.hpp"
-#include "Utils/TypeIDGenerator.hpp"
+#include "ECS/Utils/TypeIDGenerator.hpp"
 
 namespace ECS
 {

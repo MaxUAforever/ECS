@@ -39,6 +39,15 @@ public:
     }
 };
 
+class EventIDGenerator
+{
+public:
+    inline static EventID getEventID()
+    {
+        return boost::uuids::random_generator()();
+    }
+};
+
 } // namespace Utils
 } // namespace ECS
 

@@ -35,8 +35,10 @@ void ComponentManager::clearEntity(const EntityID& entityID)
     }
     
     auto& componentIDs = componentsIt->second;
-    for (const auto& componentID : componentIDs)
+    for (const auto& componentIDValue : componentIDs)
     {
+        const auto& componentID = componentIDValue.second;
+        
         _components.erase(componentID);
     }
     
