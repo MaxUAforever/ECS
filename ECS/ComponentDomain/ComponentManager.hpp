@@ -68,7 +68,6 @@ public:
         _entitiesMap[entityID].insert({component->getTypeID(), componentID});
         _components[componentID] = std::move(component);
         
-        
         return componentID;
     }
     
@@ -89,10 +88,9 @@ public:
         }
     }
     
-    IComponent* getComponent(const ComponentID& id) const;
-    
-    template <typename ComponentType>
-    ComponentType* getComponent(const EntityID& entityID) const
+    template <typename ConcreteComponent,
+              typename = typename std::enable_if<std::is_base_of<IComponent, ConcreteComponent>::value>::type>
+    ConcreteComponent* getComponent(const EntityID& entityID) const
     {
         if (_entityManager.getEntity(entityID) == nullptr)
         {
@@ -107,15 +105,17 @@ public:
         
         const auto& componentsMap = componentsMapIt->second;
         
-        const auto typeID = Utils::TypeIDGenerator::getID<ComponentType>();
+        const auto typeID = Utils::TypeIDGenerator::getID<ConcreteComponent>();
         const auto& componentIt = componentsMap.find(typeID);
         if (componentIt == componentsMap.end())
         {
             return nullptr;
         }
         
-        return static_cast<ComponentType*>(_components.at(componentIt->second).get());
+        return static_cast<ConcreteComponent*>(_components.at(componentIt->second).get());
     }
+    
+    IComponent* getComponent(const ComponentID& id) const;
     
     void remove(const EntityID& entityID, const ComponentID& componentID);
     void clearEntity(const EntityID& entityID);
