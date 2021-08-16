@@ -36,38 +36,6 @@ public:
         
         return eventID;
     }
-    
-    void reset()
-    {
-        _eventsBuffer.clear();
-        _eventTypesMap.clear();
-    }
-    
-    void sendEvents()
-    {
-        for (const auto& eventValue : _eventTypesMap)
-        {
-            const auto& eventTypeID = eventValue.first;
-            const auto& eventIDs = eventValue.second;
-            
-            const auto typeObserversIt = _observers.find(eventTypeID);
-            if (typeObserversIt == _observers.end())
-            {
-                continue;
-            }
-            
-            const auto& typeObservers = typeObserversIt->second;
-            for (auto* typeObserver : typeObservers)
-            {
-                for (const auto& eventID : eventIDs)
-                {
-                    typeObserver->onEvent(_eventsBuffer.at(eventID).get());
-                }
-            }
-        }
-        
-        reset();
-    }
 
     template <typename EventType>
     void registerObserver(IEventManagerObserver* observer)
@@ -75,6 +43,9 @@ public:
         const auto typeID = Utils::TypeIDGenerator::getID<EventType>();
         _observers[typeID].push_back(observer);
     }
+    
+    void reset();
+    void sendEvents();
     
 private:
     EventsContainer _eventsBuffer;
