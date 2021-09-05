@@ -60,8 +60,6 @@ public:
         
         std::unique_ptr<IComponent> component = std::make_unique<ConcreteComponent>(ConcreteComponent(std::forward<Args>(args)...));
         
-        component->assign(entityID);
-        
         const auto componentID = component->getID();
         assert(_components.find(componentID) == _components.end());
         

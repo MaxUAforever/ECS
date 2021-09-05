@@ -12,8 +12,9 @@
 		52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BCD26C80980004008D3 /* UUIDHasher.cpp */; };
 		52997BE226C82CBF004008D3 /* ComponentManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BE026C82CBF004008D3 /* ComponentManager.cpp */; };
 		52997BF326C9ABCC004008D3 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BF226C9ABCC004008D3 /* EntityManager.cpp */; };
-		52997C0926C9BE67004008D3 /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C0726C9BE67004008D3 /* EventManager.cpp */; };
 		52997C1226CA7BAB004008D3 /* EventTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */; };
+		52997C2926CB0D98004008D3 /* SystemManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C2726CB0D98004008D3 /* SystemManager.cpp */; };
+		52F0562026E510B900285700 /* ISystemManagerObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52F0561E26E510B900285700 /* ISystemManagerObserver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,14 +47,15 @@
 		52997BE126C82CBF004008D3 /* ComponentManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ComponentManager.hpp; sourceTree = "<group>"; };
 		52997BEB26C854AD004008D3 /* IEntityManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEntityManagerObserver.hpp; sourceTree = "<group>"; };
 		52997BF226C9ABCC004008D3 /* EntityManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
-		52997BFC26C9AEB7004008D3 /* IEvent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEvent.hpp; sourceTree = "<group>"; };
-		52997C0226C9BBA8004008D3 /* Event.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Event.hpp; sourceTree = "<group>"; };
-		52997C0726C9BE67004008D3 /* EventManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventManager.cpp; sourceTree = "<group>"; };
-		52997C0826C9BE67004008D3 /* EventManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventManager.hpp; sourceTree = "<group>"; };
-		52997C0C26C9C45B004008D3 /* IEventManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEventManagerObserver.hpp; sourceTree = "<group>"; };
 		52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventTestSuite.cpp; sourceTree = "<group>"; };
 		52997C1126CA7BAB004008D3 /* EventTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventTestSuite.hpp; sourceTree = "<group>"; };
 		52997C1526CA80AF004008D3 /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
+		52997C1D26CB0ADA004008D3 /* ISystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ISystem.hpp; sourceTree = "<group>"; };
+		52997C2326CB0B9D004008D3 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
+		52997C2726CB0D98004008D3 /* SystemManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SystemManager.cpp; sourceTree = "<group>"; };
+		52997C2826CB0D98004008D3 /* SystemManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SystemManager.hpp; sourceTree = "<group>"; };
+		52F0561E26E510B900285700 /* ISystemManagerObserver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ISystemManagerObserver.cpp; sourceTree = "<group>"; };
+		52F0561F26E510B900285700 /* ISystemManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ISystemManagerObserver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +88,13 @@
 		5273E81226BDE3D500BB15A4 /* ECS */ = {
 			isa = PBXGroup;
 			children = (
-				5273E83126BDF67D00BB15A4 /* Defs.hpp */,
-				5273E81326BDE3D500BB15A4 /* main.cpp */,
-				5273E83526BF177200BB15A4 /* Tests */,
 				5273E81F26BDECF300BB15A4 /* Utils */,
-				52997BF926C9AD9C004008D3 /* EventDomain */,
+				5273E83526BF177200BB15A4 /* Tests */,
+				5273E81326BDE3D500BB15A4 /* main.cpp */,
+				5273E83126BDF67D00BB15A4 /* Defs.hpp */,
 				52997BF126C9AB7C004008D3 /* EntityDomain */,
 				52997BF726C9AD40004008D3 /* ComponentDomain */,
+				52997C1B26CB0A42004008D3 /* SystemDomain */,
 			);
 			path = ECS;
 			sourceTree = "<group>";
@@ -142,16 +144,17 @@
 			path = ComponentDomain;
 			sourceTree = "<group>";
 		};
-		52997BF926C9AD9C004008D3 /* EventDomain */ = {
+		52997C1B26CB0A42004008D3 /* SystemDomain */ = {
 			isa = PBXGroup;
 			children = (
-				52997BFC26C9AEB7004008D3 /* IEvent.hpp */,
-				52997C0226C9BBA8004008D3 /* Event.hpp */,
-				52997C0726C9BE67004008D3 /* EventManager.cpp */,
-				52997C0826C9BE67004008D3 /* EventManager.hpp */,
-				52997C0C26C9C45B004008D3 /* IEventManagerObserver.hpp */,
+				52997C1D26CB0ADA004008D3 /* ISystem.hpp */,
+				52997C2326CB0B9D004008D3 /* System.hpp */,
+				52997C2826CB0D98004008D3 /* SystemManager.hpp */,
+				52997C2726CB0D98004008D3 /* SystemManager.cpp */,
+				52F0561E26E510B900285700 /* ISystemManagerObserver.cpp */,
+				52F0561F26E510B900285700 /* ISystemManagerObserver.hpp */,
 			);
-			path = EventDomain;
+			path = SystemDomain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,10 +213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52997C0926C9BE67004008D3 /* EventManager.cpp in Sources */,
 				52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */,
+				52997C2926CB0D98004008D3 /* SystemManager.cpp in Sources */,
 				5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */,
 				52997C1226CA7BAB004008D3 /* EventTestSuite.cpp in Sources */,
+				52F0562026E510B900285700 /* ISystemManagerObserver.cpp in Sources */,
 				5273E81426BDE3D500BB15A4 /* main.cpp in Sources */,
 				52997BF326C9ABCC004008D3 /* EntityManager.cpp in Sources */,
 				52997BE226C82CBF004008D3 /* ComponentManager.cpp in Sources */,

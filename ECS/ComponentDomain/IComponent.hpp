@@ -13,8 +13,6 @@ public:
     
     virtual ComponentID getID() const = 0;
     virtual TypeID getTypeID() const = 0;
-    virtual EntityID getOwnerID() const = 0;
-    virtual void assign(const EntityID& entityID) = 0;
 };
 
 } // namespace ECS

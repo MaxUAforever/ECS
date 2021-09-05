@@ -28,20 +28,9 @@ public:
         return _typeID;
     }
     
-    EntityID getOwnerID() const override
-    {
-        return _ownerID;
-    };
-    
-    void assign(const EntityID& entityID) override
-    {
-        _ownerID = entityID;
-    }
-    
 private:
     ComponentID _id;
     TypeID _typeID;
-    EntityID _ownerID;
 };
 
 } // namespace ECS
