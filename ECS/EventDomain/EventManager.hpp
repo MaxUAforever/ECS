@@ -14,9 +14,6 @@
 
 namespace ECS
 {
-using EventsContainer = std::unordered_map<EventID, std::unique_ptr<IEvent>, Utils::UUIDHasher>;
-using EventTypesMap = std::unordered_map<TypeID, std::vector<EventID>, Utils::UUIDHasher>;
-
 using EventTypeObservers = std::unordered_map<TypeID, std::vector<IEventManagerObserver*>, Utils::UUIDHasher>;
 
 class EventManager
@@ -24,17 +21,23 @@ class EventManager
 public:
     template <typename ConcreteEvent, typename... Args,
               typename = typename std::enable_if<std::is_base_of<IEvent, ConcreteEvent>::value>::type>
-    EventID addEvent(Args&&... args)
+    void handleEvent(Args&&... args)
     {
-        std::unique_ptr<IEvent> event = std::make_unique<ConcreteEvent>(ConcreteEvent(std::forward<Args>(args)...));
+        ConcreteEvent event{std::forward<Args>(args)...};
         
-        const auto eventID = event->getID();
-        const auto typeID = event->getTypeID();
+        const auto eventTypeID = event.getTypeID();
         
-        _eventsBuffer[eventID] = std::move(event);
-        _eventTypesMap[typeID].push_back(eventID);
+        const auto typeObserversIt = _observers.find(eventTypeID);
+        if (typeObserversIt == _observers.end())
+        {
+            return;
+        }
         
-        return eventID;
+        const auto& typeObservers = typeObserversIt->second;
+        for (auto* typeObserver : typeObservers)
+        {
+            typeObserver->onEvent(&event);
+        }
     }
 
     template <typename EventType>
@@ -44,13 +47,7 @@ public:
         _observers[typeID].push_back(observer);
     }
     
-    void reset();
-    void sendEvents();
-    
 private:
-    EventsContainer _eventsBuffer;
-    EventTypesMap _eventTypesMap;
-    
     EventTypeObservers _observers;
 };
 

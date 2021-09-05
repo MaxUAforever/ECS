@@ -10,6 +10,7 @@ namespace ECS
 
 using ComponentID = boost::uuids::uuid;
 using EntityID = boost::uuids::uuid;
+using SystemID = boost::uuids::uuid;
 using EventID = boost::uuids::uuid;
 using TypeID = boost::uuids::uuid;
 

@@ -39,6 +39,15 @@ public:
     }
 };
 
+class SystemIDGenerator
+{
+public:
+    inline static SystemID getSystemID()
+    {
+        return boost::uuids::random_generator()();
+    }
+};
+
 class EventIDGenerator
 {
 public:

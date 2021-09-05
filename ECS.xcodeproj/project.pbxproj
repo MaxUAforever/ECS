@@ -14,7 +14,6 @@
 		52997BF326C9ABCC004008D3 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BF226C9ABCC004008D3 /* EntityManager.cpp */; };
 		52997C1226CA7BAB004008D3 /* EventTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */; };
 		52997C2926CB0D98004008D3 /* SystemManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C2726CB0D98004008D3 /* SystemManager.cpp */; };
-		52F0562026E510B900285700 /* ISystemManagerObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52F0561E26E510B900285700 /* ISystemManagerObserver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +37,9 @@
 		5273E83126BDF67D00BB15A4 /* Defs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Defs.hpp; sourceTree = "<group>"; };
 		5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityTestSuite.cpp; sourceTree = "<group>"; };
 		5273E83726BF179D00BB15A4 /* EntityTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityTestSuite.hpp; sourceTree = "<group>"; };
+		527E8B1026E5148600D9B2B3 /* EventDomain */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EventDomain; sourceTree = "<group>"; };
+		527E8B1326E51A9400D9B2B3 /* ISystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ISystem.hpp; sourceTree = "<group>"; };
+		527E8B1926E51B9A00D9B2B3 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		52997BC926C7C896004008D3 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
 		52997BCD26C80980004008D3 /* UUIDHasher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UUIDHasher.cpp; sourceTree = "<group>"; };
 		52997BCE26C80980004008D3 /* UUIDHasher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UUIDHasher.hpp; sourceTree = "<group>"; };
@@ -50,12 +52,8 @@
 		52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventTestSuite.cpp; sourceTree = "<group>"; };
 		52997C1126CA7BAB004008D3 /* EventTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventTestSuite.hpp; sourceTree = "<group>"; };
 		52997C1526CA80AF004008D3 /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
-		52997C1D26CB0ADA004008D3 /* ISystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ISystem.hpp; sourceTree = "<group>"; };
-		52997C2326CB0B9D004008D3 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
 		52997C2726CB0D98004008D3 /* SystemManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SystemManager.cpp; sourceTree = "<group>"; };
 		52997C2826CB0D98004008D3 /* SystemManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SystemManager.hpp; sourceTree = "<group>"; };
-		52F0561E26E510B900285700 /* ISystemManagerObserver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ISystemManagerObserver.cpp; sourceTree = "<group>"; };
-		52F0561F26E510B900285700 /* ISystemManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ISystemManagerObserver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +90,7 @@
 				5273E83526BF177200BB15A4 /* Tests */,
 				5273E81326BDE3D500BB15A4 /* main.cpp */,
 				5273E83126BDF67D00BB15A4 /* Defs.hpp */,
+				527E8B1026E5148600D9B2B3 /* EventDomain */,
 				52997BF126C9AB7C004008D3 /* EntityDomain */,
 				52997BF726C9AD40004008D3 /* ComponentDomain */,
 				52997C1B26CB0A42004008D3 /* SystemDomain */,
@@ -147,12 +146,10 @@
 		52997C1B26CB0A42004008D3 /* SystemDomain */ = {
 			isa = PBXGroup;
 			children = (
-				52997C1D26CB0ADA004008D3 /* ISystem.hpp */,
-				52997C2326CB0B9D004008D3 /* System.hpp */,
 				52997C2826CB0D98004008D3 /* SystemManager.hpp */,
 				52997C2726CB0D98004008D3 /* SystemManager.cpp */,
-				52F0561E26E510B900285700 /* ISystemManagerObserver.cpp */,
-				52F0561F26E510B900285700 /* ISystemManagerObserver.hpp */,
+				527E8B1326E51A9400D9B2B3 /* ISystem.hpp */,
+				527E8B1926E51B9A00D9B2B3 /* System.hpp */,
 			);
 			path = SystemDomain;
 			sourceTree = "<group>";
@@ -217,7 +214,6 @@
 				52997C2926CB0D98004008D3 /* SystemManager.cpp in Sources */,
 				5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */,
 				52997C1226CA7BAB004008D3 /* EventTestSuite.cpp in Sources */,
-				52F0562026E510B900285700 /* ISystemManagerObserver.cpp in Sources */,
 				5273E81426BDE3D500BB15A4 /* main.cpp in Sources */,
 				52997BF326C9ABCC004008D3 /* EntityManager.cpp in Sources */,
 				52997BE226C82CBF004008D3 /* ComponentManager.cpp in Sources */,

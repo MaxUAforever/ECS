@@ -27,7 +27,7 @@ public:
         std::unique_ptr<ISystem> system = std::make_unique<ConcreteSystem>(ConcreteSystem(std::forward<Args>(args)...));
         
         const auto systemID = system->getID();
-        _systemsContainer[systemID] = std::move(system);
+        _systems[systemID] = std::move(system);
         
         return systemID;
     }
@@ -41,15 +41,10 @@ public:
     ISystem* getSystem(const SystemID& id) const;
     
     void reset();
-    
     void removeSystem(const SystemID& id);
-
-    void registerObserver(const SystemID& publisher, );
     
 private:
-    SystemsContainer _systemsContainer;
-    
-    std::vector<IEntityManagerObserver*> _observers;
+    SystemsContainer _systems;
 };
 
 } // namespace ECS

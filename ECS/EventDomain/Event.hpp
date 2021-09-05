@@ -16,7 +16,6 @@ public:
     Event()
         : _id(Utils::EventIDGenerator::getEventID())
         , _typeID(Utils::TypeIDGenerator::getID<Type>())
-        , _creationTime(Utils::Timer::getCurrentTime())
     {
     }
     
@@ -30,15 +29,9 @@ public:
         return _typeID;
     }
     
-    inline Time getCreationTime() const override
-    {
-        return _creationTime;
-    }
-    
 private:
     EventID _id;
     TypeID _typeID;
-    Time _creationTime;
 };
 
 } // namespace ECS

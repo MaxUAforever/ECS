@@ -84,8 +84,7 @@ std::string checkEventObserver()
     const auto& entityID = entityManager.createEntity<LifeEntity>();
     componentManager.assignComponent<LifeComponent>(entityID, true);
     
-    eventManager.addEvent<EntityKilledTestEvent>(entityID);
-    eventManager.sendEvents();
+    eventManager.handleEvent<EntityKilledTestEvent>(entityID);
     
     auto* lifeComponent = componentManager.getComponent<LifeComponent>(entityID);
     

@@ -13,8 +13,6 @@ public:
     
     virtual TypeID getTypeID() const = 0;
     virtual EventID getID() const = 0;
-    
-    virtual Time getCreationTime() const = 0;
 };
 
 } // namespace ECS
