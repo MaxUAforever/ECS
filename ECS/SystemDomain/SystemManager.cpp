@@ -2,6 +2,11 @@
 
 namespace ECS
 {
+SystemManager::SystemManager(const EventManager& eventManager)
+    : _eventManager{eventManager}
+{
+}
+
 ISystem* SystemManager::getSystem(const SystemID& id) const
 {
     auto systemIt = _systems.find(id);
@@ -11,6 +16,17 @@ ISystem* SystemManager::getSystem(const SystemID& id) const
     }
     
     return systemIt->second.get();
+}
+
+void SystemManager::updateSystems()
+{
+    for (auto& systemValue : _systems)
+    {
+        auto& system = systemValue.second;
+        auto event = system->update();
+        
+        _eventManager.handleEvent(std::move(event));
+    }
 }
 
 void SystemManager::reset()

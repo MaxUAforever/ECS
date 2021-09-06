@@ -1,20 +1,26 @@
-#ifndef IComponent_hpp
-#define IComponent_hpp
+#ifndef ISystem_hpp
+#define ISystem_hpp
 
 #include "Defs.hpp"
+
+#include "ECS/EventDomain/IEventManagerObserver.hpp"
+
+#include <memory>
 
 namespace ECS
 {
 
-class ISystem
+class ISystem : public IEventManagerObserver
 {
 public:
     virtual ~ISystem() = default;
     
     virtual SystemID getID() const = 0;
     virtual TypeID getTypeID() const = 0;
+    
+    virtual std::unique_ptr<IEvent> update() = 0;
 };
 
 } // namespace ECS
 
-#endif /* IComponent_hpp */
+#endif /* ISystem_hpp */

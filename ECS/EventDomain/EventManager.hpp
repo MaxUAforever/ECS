@@ -19,26 +19,7 @@ using EventTypeObservers = std::unordered_map<TypeID, std::vector<IEventManagerO
 class EventManager
 {
 public:
-    template <typename ConcreteEvent, typename... Args,
-              typename = typename std::enable_if<std::is_base_of<IEvent, ConcreteEvent>::value>::type>
-    void handleEvent(Args&&... args)
-    {
-        ConcreteEvent event{std::forward<Args>(args)...};
-        
-        const auto eventTypeID = event.getTypeID();
-        
-        const auto typeObserversIt = _observers.find(eventTypeID);
-        if (typeObserversIt == _observers.end())
-        {
-            return;
-        }
-        
-        const auto& typeObservers = typeObserversIt->second;
-        for (auto* typeObserver : typeObservers)
-        {
-            typeObserver->onEvent(&event);
-        }
-    }
+    void handleEvent(std::unique_ptr<IEvent> event) const;
 
     template <typename EventType>
     void registerObserver(IEventManagerObserver* observer)

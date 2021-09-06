@@ -5,8 +5,7 @@
 #include "System.hpp"
 
 #include "ECS/Defs.hpp"
-
-#include "ECS/Utils/TypeIDGenerator.hpp"
+#include "ECS/EventDomain/EventManager.hpp"
 #include "ECS/Utils/UUIDHasher.hpp"
 
 #include <memory>
@@ -20,6 +19,8 @@ using SystemsContainer = std::unordered_map<SystemID, std::unique_ptr<ISystem>, 
 class SystemManager
 {
 public:
+    explicit SystemManager(const EventManager& eventManager);
+    
     template <typename ConcreteSystem, typename... Args,
               typename = typename std::enable_if<std::is_base_of<ISystem, ConcreteSystem>::value>::type>
     EntityID addSystem(Args&&... args)
@@ -38,12 +39,22 @@ public:
         return static_cast<ConcreteSystem*>(getSystem(id));
     }
     
-    ISystem* getSystem(const SystemID& id) const;
+    template <typename EventType>
+    void registerEventObserver(const SystemID& id)
+    {
+        _eventManager.registerObserver<EventType>(getSystem(id));
+    }
     
-    void reset();
+    ISystem* getSystem(const SystemID& id) const;
     void removeSystem(const SystemID& id);
     
+    void updateSystems();
+    
+    void reset();
+    
 private:
+    const EventManager& _eventManager;
+    
     SystemsContainer _systems;
 };
 

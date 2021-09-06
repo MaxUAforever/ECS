@@ -84,7 +84,8 @@ std::string checkEventObserver()
     const auto& entityID = entityManager.createEntity<LifeEntity>();
     componentManager.assignComponent<LifeComponent>(entityID, true);
     
-    eventManager.handleEvent<EntityKilledTestEvent>(entityID);
+    auto entityKilledEvent = std::make_unique<EntityKilledTestEvent>(entityID);
+    eventManager.handleEvent(std::move(entityKilledEvent));
     
     auto* lifeComponent = componentManager.getComponent<LifeComponent>(entityID);
     

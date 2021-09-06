@@ -2,6 +2,7 @@
 #define Entity_hpp
 
 #include "ISystem.hpp"
+
 #include "ECS/Utils/TypeIDGenerator.hpp"
 
 namespace ECS
@@ -20,7 +21,7 @@ public:
     SystemID getID() const override
     {
         return _id;
-    };
+    }
     
     TypeID getTypeID() const override
     {
