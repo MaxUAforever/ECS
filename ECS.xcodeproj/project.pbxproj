@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		5273E81426BDE3D500BB15A4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5273E81326BDE3D500BB15A4 /* main.cpp */; };
 		5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */; };
-		527E8B1F26E56E8E00D9B2B3 /* SystemTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 527E8B1D26E56E8E00D9B2B3 /* SystemTestSuite.cpp */; };
 		527E8B2A26E5D4DE00D9B2B3 /* ECSEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 527E8B2826E5D4DE00D9B2B3 /* ECSEngine.cpp */; };
 		527E8B3326E6B4AE00D9B2B3 /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 527E8B3226E6B4AE00D9B2B3 /* EventManager.cpp */; };
+		527E8B4226E6B77C00D9B2B3 /* EngineTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 527E8B4026E6B77C00D9B2B3 /* EngineTestSuite.cpp */; };
 		52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BCD26C80980004008D3 /* UUIDHasher.cpp */; };
 		52997BE226C82CBF004008D3 /* ComponentManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BE026C82CBF004008D3 /* ComponentManager.cpp */; };
 		52997BF326C9ABCC004008D3 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997BF226C9ABCC004008D3 /* EntityManager.cpp */; };
-		52997C1226CA7BAB004008D3 /* EventTestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */; };
 		52997C2926CB0D98004008D3 /* SystemManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 52997C2726CB0D98004008D3 /* SystemManager.cpp */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +41,6 @@
 		5273E83726BF179D00BB15A4 /* EntityTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityTestSuite.hpp; sourceTree = "<group>"; };
 		527E8B1326E51A9400D9B2B3 /* ISystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ISystem.hpp; sourceTree = "<group>"; };
 		527E8B1926E51B9A00D9B2B3 /* System.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = System.hpp; sourceTree = "<group>"; };
-		527E8B1D26E56E8E00D9B2B3 /* SystemTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SystemTestSuite.cpp; sourceTree = "<group>"; };
-		527E8B1E26E56E8E00D9B2B3 /* SystemTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SystemTestSuite.hpp; sourceTree = "<group>"; };
 		527E8B2826E5D4DE00D9B2B3 /* ECSEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ECSEngine.cpp; sourceTree = "<group>"; };
 		527E8B2926E5D4DE00D9B2B3 /* ECSEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ECSEngine.hpp; sourceTree = "<group>"; };
 		527E8B3126E6B4A400D9B2B3 /* Event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Event.hpp; sourceTree = "<group>"; };
@@ -51,6 +48,8 @@
 		527E8B3526E6B4B100D9B2B3 /* EventManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventManager.hpp; sourceTree = "<group>"; };
 		527E8B3626E6B4BF00D9B2B3 /* IEvent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEvent.hpp; sourceTree = "<group>"; };
 		527E8B3926E6B52100D9B2B3 /* IEventManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEventManagerObserver.hpp; sourceTree = "<group>"; };
+		527E8B4026E6B77C00D9B2B3 /* EngineTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EngineTestSuite.cpp; sourceTree = "<group>"; };
+		527E8B4126E6B77C00D9B2B3 /* EngineTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EngineTestSuite.hpp; sourceTree = "<group>"; };
 		52997BC926C7C896004008D3 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
 		52997BCD26C80980004008D3 /* UUIDHasher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UUIDHasher.cpp; sourceTree = "<group>"; };
 		52997BCE26C80980004008D3 /* UUIDHasher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UUIDHasher.hpp; sourceTree = "<group>"; };
@@ -60,8 +59,6 @@
 		52997BE126C82CBF004008D3 /* ComponentManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ComponentManager.hpp; sourceTree = "<group>"; };
 		52997BEB26C854AD004008D3 /* IEntityManagerObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IEntityManagerObserver.hpp; sourceTree = "<group>"; };
 		52997BF226C9ABCC004008D3 /* EntityManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
-		52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventTestSuite.cpp; sourceTree = "<group>"; };
-		52997C1126CA7BAB004008D3 /* EventTestSuite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventTestSuite.hpp; sourceTree = "<group>"; };
 		52997C1526CA80AF004008D3 /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		52997C2726CB0D98004008D3 /* SystemManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SystemManager.cpp; sourceTree = "<group>"; };
 		52997C2826CB0D98004008D3 /* SystemManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SystemManager.hpp; sourceTree = "<group>"; };
@@ -127,10 +124,8 @@
 			children = (
 				5273E83626BF179D00BB15A4 /* EntityTestSuite.cpp */,
 				5273E83726BF179D00BB15A4 /* EntityTestSuite.hpp */,
-				52997C1026CA7BAB004008D3 /* EventTestSuite.cpp */,
-				52997C1126CA7BAB004008D3 /* EventTestSuite.hpp */,
-				527E8B1D26E56E8E00D9B2B3 /* SystemTestSuite.cpp */,
-				527E8B1E26E56E8E00D9B2B3 /* SystemTestSuite.hpp */,
+				527E8B4026E6B77C00D9B2B3 /* EngineTestSuite.cpp */,
+				527E8B4126E6B77C00D9B2B3 /* EngineTestSuite.hpp */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -240,9 +235,8 @@
 				52997BCF26C80980004008D3 /* UUIDHasher.cpp in Sources */,
 				52997C2926CB0D98004008D3 /* SystemManager.cpp in Sources */,
 				5273E83826BF179D00BB15A4 /* EntityTestSuite.cpp in Sources */,
-				527E8B1F26E56E8E00D9B2B3 /* SystemTestSuite.cpp in Sources */,
+				527E8B4226E6B77C00D9B2B3 /* EngineTestSuite.cpp in Sources */,
 				527E8B2A26E5D4DE00D9B2B3 /* ECSEngine.cpp in Sources */,
-				52997C1226CA7BAB004008D3 /* EventTestSuite.cpp in Sources */,
 				527E8B3326E6B4AE00D9B2B3 /* EventManager.cpp in Sources */,
 				5273E81426BDE3D500BB15A4 /* main.cpp in Sources */,
 				52997BF326C9ABCC004008D3 /* EntityManager.cpp in Sources */,

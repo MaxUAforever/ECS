@@ -1,12 +1,12 @@
-#ifndef EventTestSuite_hpp
-#define EventTestSuite_hpp
+#ifndef EngineTestSuite_hpp
+#define EngineTestSuite_hpp
 
 namespace ECS
 {
 namespace Tests
 {
     
-class EventTests
+class EngineTests
 {
 public:
     static void runTests();
@@ -15,4 +15,4 @@ public:
 } // namespcae Tests
 } // namespace ECS
 
-#endif /* EventTestSuite_hpp */
+#endif /* EngineTestSuite_hpp */

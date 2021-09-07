@@ -1,5 +1,5 @@
-#ifndef Entity_hpp
-#define Entity_hpp
+#ifndef System_hpp
+#define System_hpp
 
 #include "ISystem.hpp"
 
@@ -28,6 +28,14 @@ public:
         return _typeID;
     }
     
+    void update() override
+    {
+    }
+    
+    void onEvent(IEvent* event) override
+    {
+    }
+    
 private:
     EntityID _id;
     TypeID _typeID;
@@ -35,4 +43,4 @@ private:
 
 } // namespace ECS
 
-#endif /* Entity_hpp */
+#endif /* System_hpp */

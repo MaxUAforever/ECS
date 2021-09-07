@@ -17,12 +17,15 @@ public:
     ECSEngine();
     
     EntityManager& getEntityManager();
+    ComponentManager& getComponentManager();
+    SystemManager& getSystemManager();
+    EventManager& getEventManager();
     
 private:
-    std::unique_ptr<EventManager> _eventManager;
     std::unique_ptr<EntityManager> _entityManager;
     std::unique_ptr<ComponentManager> _componentManager;
     std::unique_ptr<SystemManager> _systemManager;
+    std::unique_ptr<EventManager> _eventManager;
 };
 
 } // namespace ECS

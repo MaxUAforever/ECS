@@ -121,6 +121,30 @@ public:
     
     void onEntityRemove(const EntityID& entityID) override;
     
+public:
+    using Iterator = typename Components::iterator;
+    using ConstIterator = typename Components::const_iterator;
+    
+    Iterator begin()
+    {
+        return Iterator(_components.begin());
+    }
+
+    Iterator end()
+    {
+        return Iterator(_components.end());
+    }
+
+    ConstIterator begin() const
+    {
+        return ConstIterator(_components.cbegin());
+    }
+
+    ConstIterator end() const
+    {
+        return ConstIterator(_components.cend());
+    }
+    
 private:
     const EntityManager& _entityManager;
     

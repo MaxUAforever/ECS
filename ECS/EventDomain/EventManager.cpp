@@ -2,6 +2,10 @@
 
 namespace ECS
 {
+EventManager::EventManager(const SystemManager& systemManager)
+    : _systemManager{systemManager}
+{
+}
 
 void EventManager::handleEvent(std::unique_ptr<IEvent> event) const
 {
