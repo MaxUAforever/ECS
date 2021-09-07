@@ -46,6 +46,30 @@ public:
 
     void registerObserver(IEntityManagerObserver* observer);
     
+public:
+    using Iterator = typename EntitiesContainer::iterator;
+    using ConstIterator = typename EntitiesContainer::const_iterator;
+    
+    Iterator begin()
+    {
+        return Iterator(_entitiesContainer.begin());
+    }
+
+    Iterator end()
+    {
+        return Iterator(_entitiesContainer.end());
+    }
+
+    ConstIterator begin() const
+    {
+        return ConstIterator(_entitiesContainer.cbegin());
+    }
+
+    ConstIterator end() const
+    {
+        return ConstIterator(_entitiesContainer.cend());
+    }
+    
 private:
     EntitiesContainer _entitiesContainer;
     

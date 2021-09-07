@@ -93,42 +93,47 @@ struct ColisionEvent : public Event<ColisionEvent>
 class CollisionSystem final : public System<CollisionSystem>
 {
 public:
-    CollisionSystem(const ComponentManager& componentManager, const EventManager& eventManager)
-        : _componentManager{componentManager}
+    CollisionSystem(const EntityManager& entityManager,
+                    const ComponentManager& componentManager,
+                    const EventManager& eventManager)
+        : _entityManager{entityManager}
+        , _componentManager{componentManager}
         , _eventManager{eventManager}
     {
     }
     
     void update() override
     {
-        for (auto firstIt = _componentManager.begin(); firstIt != _componentManager.end(); ++firstIt)
+        for (auto firstIt = _entityManager.begin(); firstIt != _entityManager.end(); ++firstIt)
         {
-            const auto positionID = Utils::TypeIDGenerator::getID<Position>();
+            const auto& firstEntityID = firstIt->first;
+            auto* firstPosition = _componentManager.getComponent<Position>(firstEntityID);
             
-            if (firstIt->second->getTypeID() != positionID)
+            if (firstPosition == nullptr)
             {
-                return;
+                continue;
             }
             
-            for (auto secondIt = std::next(firstIt, 1); secondIt != _componentManager.end(); ++secondIt)
+            for (auto secondIt = std::next(firstIt, 1); secondIt != _entityManager.end(); ++secondIt)
             {
-                if (secondIt->second->getTypeID() != positionID)
-                {
-                    return;
-                }
+                const auto& secondEntityID = secondIt->first;
+                auto* secondPosition = _componentManager.getComponent<Position>(secondEntityID);
                 
-                auto* firstPosition = static_cast<Position*>(firstIt->second.get());
-                auto* secondPosition = static_cast<Position*>(secondIt->second.get());
+                if (secondPosition == nullptr)
+                {
+                    continue;
+                }
                 
                 if (firstPosition->x == secondPosition->x && firstPosition->y == secondPosition->y)
                 {
-                    _eventManager.handleEvent(std::make_unique<ColisionEvent>(firstIt->second->getID(), secondIt->second->getID()));
+                    _eventManager.handleEvent(std::make_unique<ColisionEvent>(firstEntityID, secondEntityID));
                 }
             }
         }
     }
     
 private:
+    const EntityManager& _entityManager;
     const ComponentManager& _componentManager;
     const EventManager& _eventManager;
 };
@@ -144,6 +149,10 @@ public:
     void onEvent(IEvent* event) override
     {
         auto* colisionEvent = static_cast<ColisionEvent*>(event);
+        if (colisionEvent == nullptr)
+        {
+            return;
+        }
         
         const auto& firstEntityWeight =
             _componentManager.getComponent<Weight>(colisionEvent->firstEntityID);
@@ -175,7 +184,7 @@ public:
         
         if (secondEntityHealth != nullptr)
         {
-            if (firstEntityHealth->value > secondEntityHealth->value)
+            if (firstEntityWeight->value > secondEntityHealth->value)
             {
                 secondEntityHealth->value = 0;
             }
@@ -198,15 +207,18 @@ std::string checkECSEngineScenario()
     const auto& blackHoleEntityID = ecs.getEntityManager().createEntity<BlackHole>();
 
     ecs.getComponentManager().assignComponent<Health>(spaceShipEntityID, 100);
-    ecs.getComponentManager().assignComponent<Position>(spaceShipEntityID, 0, 20, 0);
+    ecs.getComponentManager().assignComponent<Position>(spaceShipEntityID, 0, 0, 0);
     ecs.getComponentManager().assignComponent<Weight>(spaceShipEntityID, 100);
     ecs.getComponentManager().assignComponent<Engine>(spaceShipEntityID, 10);
     
     ecs.getComponentManager().assignComponent<Position>(blackHoleEntityID, 0, 0, 0);
-    ecs.getComponentManager().assignComponent<Weight>(spaceShipEntityID, 50);
+    ecs.getComponentManager().assignComponent<Weight>(blackHoleEntityID, 50);
     ecs.getComponentManager().assignComponent<GravityForce>(blackHoleEntityID, 5);
     
-    const auto& collisionSystemID = ecs.getSystemManager().addSystem<CollisionSystem>(ecs.getComponentManager(), ecs.getEventManager());
+    ecs.getSystemManager().addSystem<CollisionSystem>(ecs.getEntityManager(),
+                                                      ecs.getComponentManager(),
+                                                      ecs.getEventManager());
+    
     const auto& healthSystemID = ecs.getSystemManager().addSystem<HealthSystem>(ecs.getComponentManager());
     
     ecs.getEventManager().registerObserver<ColisionEvent>(healthSystemID);

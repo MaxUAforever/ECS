@@ -22,10 +22,10 @@ public:
     EventManager& getEventManager();
     
 private:
-    std::unique_ptr<EntityManager> _entityManager;
-    std::unique_ptr<ComponentManager> _componentManager;
-    std::unique_ptr<SystemManager> _systemManager;
-    std::unique_ptr<EventManager> _eventManager;
+    EntityManager _entityManager;
+    ComponentManager _componentManager;
+    SystemManager _systemManager;
+    EventManager _eventManager;
 };
 
 } // namespace ECS
